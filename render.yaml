@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: eyeai-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: FLASK_ENV
+        value: production
+    disk:
+      name: model-storage
+      mountPath: /model
+      sizeGB: 1

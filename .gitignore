@@ -1,0 +1,21 @@
+# Python dependencies and cache
+backend/__pycache__/
+venv/
+*.pyc
+
+# Datasets (Extremely important: keep these local as they are too large for Git)
+backend/dataset/
+backend/augmented_dataset/
+backend/uploads/
+
+# Node modules (Frontend dependencies)
+frontend-desktop/node_modules/
+frontend-web/node_modules/
+
+# Build artifacts (The .exe and dist folders)
+frontend-desktop/dist/
+
+# Local databases and OS files
+backend/database.db
+.DS_Store
+Thumbs.db
