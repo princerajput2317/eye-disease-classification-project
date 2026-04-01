@@ -228,9 +228,9 @@ def history():
         })
 
     return jsonify({
-        "records": records,
-        "total": total
-    })
+                 "records": records,
+                 "total": len(records)
+})
 
 @app.route("/history/<int:id>", methods=["DELETE"])
 def delete_history(id):
