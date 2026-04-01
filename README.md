@@ -17,35 +17,42 @@
 ## 📁 Project Structure
 
 ```
-eye-disease-project/
+EYE-DISEASE-PROJECT
 ├── backend/
-│   ├── app.py              ← Flask REST API
-│   ├── train.py            ← CNN training script
-│   ├── augment.py          ← Dataset augmentation (5× per image)
-│   ├── requirements.txt    ← Python dependencies
-│   ├── model/              ← Place eye_disease_model.h5 here
-│   └── uploads/            ← User uploaded images (auto-created)
-├── frontend-web/           ← React web application
+│   ├── __pycache__/
+│   ├── augmented_dataset/
+│   ├── dataset/
+│   ├── model/
+│   │   ├── .gitkeep
+│   │   ├── best.keras
+│   │   ├── classes.json
+│   │   └── eye_disease_model.keras
+│   ├── uploads/
+│   ├── app.py
+│   ├── augment.py
+│   ├── database.db
+│   ├── eye_validator.py
+│   ├── requirements.txt
+│   └── train.py
+├── frontend-desktop/
+│   ├── dist/
+│   ├── node_modules/
+│   ├── index.html
+│   ├── main.js
+│   ├── package-lock.json
+│   └── package.json
+├── frontend-web/
+│   ├── node_modules/
+│   ├── public/
 │   ├── src/
-│   │   ├── App.js
-│   │   ├── pages/
-│   │   │   ├── DetectPage.js
-│   │   │   ├── HistoryPage.js
-│   │   │   ├── AdminPage.js
-│   │   │   └── AboutPage.js
-│   │   └── App.css
+│   ├── package-lock.json
 │   └── package.json
-├── frontend-desktop/       ← Electron desktop application
-│   ├── main.js             ← Electron main process
-│   ├── index.html          ← Self-contained desktop UI
-│   └── package.json
-├── colab/
-│   └── EyeDisease_Training_Colab.ipynb  ← Google Colab training notebook
 ├── scripts/
-│   ├── setup.sh            ← Linux/Mac one-command setup
-│   └── setup.bat           ← Windows one-command setup
-└── README.md
-```
+├── venv/
+├── .gitignore
+├── classes.json
+├── README.md
+└── render.yaml
 
 ---
 
@@ -132,7 +139,7 @@ npm start
          ↓ augment.py (5×)
 [~20,000 labeled images]
          ↓ train.py / Colab
-[EfficientNetB0 CNN → eye_disease_model.h5]
+[EfficientNetB3 CNN → eye_disease_model.h5]
          ↓
 [Flask API – localhost:5000]
     ↙          ↘
@@ -157,39 +164,11 @@ npm start
 
 ---
 
-## 🖥️ Build Desktop Installer (.exe)
-
-```bash
-cd frontend-desktop
-npm install
-npm run build-win    # Windows .exe
-npm run build-mac    # macOS .dmg
-npm run build-linux  # Linux AppImage
-```
-Installer appears in `frontend-desktop/dist/`
-
----
-
-## ☁️ Deploy to Web (Free)
-
-**Backend → Render.com**
-1. Push code to GitHub
-2. Connect repo to render.com
-3. Start command: `python backend/app.py`
-4. Add `requirements.txt` to backend/
-
-**Frontend → Vercel**
-1. `cd frontend-web && npm run build`
-2. `npx vercel --prod`
-3. Set env var: `REACT_APP_API_URL=https://your-app.onrender.com`
-
----
-
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| ML Model | TensorFlow 2.16 + EfficientNetB0 |
+| ML Model | TensorFlow 2.16 + EfficientNetB3 |
 | Training | Google Colab (free GPU) |
 | Backend | Flask 3.0 + SQLite |
 | Web Frontend | React 18 + Recharts |
@@ -200,7 +179,7 @@ Installer appears in `frontend-desktop/dist/`
 
 ## 📊 Model Performance (Expected)
 
-- Architecture: EfficientNetB0 + Custom Head
+- Architecture: EfficientNetB3 + Custom Head
 - Training: 2-phase (frozen base → fine-tune top-30 layers)
 - Expected Accuracy: **85–95%** on validation set
 - Input Size: 224×224×3
@@ -211,4 +190,9 @@ Installer appears in `frontend-desktop/dist/`
 ## 👨‍💻 Author
 
 B.Tech CSE Student Project
+Backend and deploying - Prince Rajput (24BCE10966)
+Backend - Nikhil (24BCE10524)
+Frontend web - Hardik Lamba (24BCE10592)
+Frontend desktop - Harsh Yadav (24BCE10563)
+Machine learning and deploying - Kunal pandey (24BCE10137)
 Dataset: Kaggle Eye Diseases Classification by Gunavenkat Doddi
